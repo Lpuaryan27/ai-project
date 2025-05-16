@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Webinar with Recording</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+
+        .container {
+            background: #ffffff;
+            color: #333;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            transition: transform 0.2s ease, opacity 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-5">
+    <a href="ai.html" class="fixed top-5 left-5 flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+    </a>
+    <div class="container max-w-3xl text-center  bg-gray-900 bg-opacity-90 border-2 border-gray-600">
+        <h1 class="text-3xl font-extrabold mb-6 text-gray-100">Live Webinar</h1>
+        
+        <div class="relative border border-gray-600 bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+            <video id="webinar-video" class="w-full h-auto" autoplay playsinline></video>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <button id="start-webinar" class="btn bg-green-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-600">Start Webinar</button>
+            <button id="stop-webinar" class="btn bg-red-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-600 hidden">Stop Webinar</button>
+            <button id="start-recording" class="btn bg-blue-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-blue-600 hidden">Start Recording</button>
+            <button id="stop-recording" class="btn bg-yellow-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-yellow-600 hidden">Stop Recording</button>
+        </div>
+
+        <a id="download-video" class="hidden mt-6 block text-blue-600 font-semibold underline">Download Recording</a>
+    </div>
+
+    <script>
+        const webinarVideo = document.getElementById('webinar-video');
+        const startWebinarBtn = document.getElementById('start-webinar');
+        const stopWebinarBtn = document.getElementById('stop-webinar');
+        const startRecordingBtn = document.getElementById('start-recording');
+        const stopRecordingBtn = document.getElementById('stop-recording');
+        const downloadVideoLink = document.getElementById('download-video');
+
+        let webinarStream;
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        startWebinarBtn.addEventListener('click', async () => {
+            try {
+                webinarStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                webinarVideo.srcObject = webinarStream;
+                startWebinarBtn.classList.add('hidden');
+                stopWebinarBtn.classList.remove('hidden');
+                startRecordingBtn.classList.remove('hidden');
+            } catch (err) {
+                console.error("Error accessing camera/microphone: ", err);
+                alert("Failed to access the camera/microphone. Please allow permissions.");
+            }
+        });
+
+        stopWebinarBtn.addEventListener('click', () => {
+            if (webinarStream) {
+                let tracks = webinarStream.getTracks();
+                tracks.forEach(track => track.stop());
+                webinarVideo.srcObject = null;
+            }
+            startWebinarBtn.classList.remove('hidden');
+            stopWebinarBtn.classList.add('hidden');
+            startRecordingBtn.classList.add('hidden');
+            stopRecordingBtn.classList.add('hidden');
+        });
+
+        startRecordingBtn.addEventListener('click', () => {
+            recordedChunks = [];
+            mediaRecorder = new MediaRecorder(webinarStream);
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                downloadVideoLink.href = url;
+                downloadVideoLink.download = 'webinar-recording.webm';
+                downloadVideoLink.classList.remove('hidden');
+            };
+            mediaRecorder.start();
+            startRecordingBtn.classList.add('hidden');
+            stopRecordingBtn.classList.remove('hidden');
+        });
+
+        stopRecordingBtn.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startRecordingBtn.classList.remove('hidden');
+            stopRecordingBtn.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

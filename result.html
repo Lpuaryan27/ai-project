@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Recommendation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section id="result">
+      <h2>Your Career Recommendation</h2>
+      <p id="career-recommendation"></p>
+      <p id="career-explanation"></p>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div id="progress" style="width: 0%; background-color: #4CAF50;"></div>
+      </div>
+      <p id="progress-text">0%</p>
+
+      <!-- Career Path Links -->
+      <h3>Explore More</h3>
+      <div id="career-links"></div>
+
+      <!-- Next Button -->
+      <button onclick="goToFeedbackPage()">Next: Submit Feedback</button>
+    </section>
+  </main>
+
+  <script>
+    // Get the score from localStorage
+    const score = parseInt(localStorage.getItem('assessmentScore')) || 0;
+    const recommendation = document.getElementById('career-recommendation');
+    const explanation = document.getElementById('career-explanation');
+    const progress = document.getElementById('progress');
+    const progressText = document.getElementById('progress-text');
+    const careerLinks = document.getElementById('career-links');
+
+    if (score <= 35) {
+      recommendation.textContent = 'Consider exploring roles in creative or technical fields, such as design or research.';
+      explanation.textContent = 'Your assessment suggests that creative and problem-solving roles might suit you well.';
+      progress.style.width = '30%';
+      progressText.textContent = '30%';
+      careerLinks.innerHTML = `<a href="#">Graphic Designer</a><br><a href="#">Research Scientist</a>`;
+    } else if (score <= 55) {
+      recommendation.textContent = 'You might thrive in roles where leadership and problem-solving are crucial.';
+      explanation.textContent = 'Your leadership and problem-solving skills suggest roles in management or software development.';
+      progress.style.width = '60%';
+      progressText.textContent = '60%';
+      careerLinks.innerHTML = `<a href="#">Project Manager</a><br><a href="#">Software Engineer</a>`;
+    } else {
+      recommendation.textContent = 'You are ready for high-level leadership roles or entrepreneurship.';
+      explanation.textContent = 'Your skills are ideal for top roles in management or starting your own business.';
+      progress.style.width = '100%';
+      progressText.textContent = '100%';
+      careerLinks.innerHTML = `<a href="#">Entrepreneur</a><br><a href="#">CEO</a>`;
+    }
+
+    // Redirect to feedback page
+    function goToFeedbackPage() {
+      window.location.href = 'feedback.html';
+    }
+  </script>
+</body>
+</html>

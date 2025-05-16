@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Resume & Cover Letter Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-5">
+    
+    <!-- Info Section -->
+    <div class="max-w-3xl text-center bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">About Smart Resume Builder</h2>
+        <p class="text-gray-600 mt-3">
+            Our AI-powered **Smart Resume & Cover Letter Builder** helps job seekers create professional resumes and cover letters with ease. 
+            Simply enter your details, and our system will generate a well-structured resume tailored to your job application.
+        </p>
+    </div>
+
+    <!-- Resume Form -->
+    <div class="max-w-2xl w-full p-5 bg-white rounded-lg shadow-md">
+        <h2 class="text-xl font-bold mb-4">Smart Resume & Cover Letter Builder</h2>
+        <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded mb-3">
+        <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded mb-3">
+        <textarea id="skills" placeholder="Skills (comma separated)" class="w-full p-2 border rounded mb-3"></textarea>
+        <textarea id="experience" placeholder="Work Experience" class="w-full p-2 border rounded mb-3"></textarea>
+        <input type="text" id="jobTitle" placeholder="Job Title Applying For" class="w-full p-2 border rounded mb-3">
+        <button onclick="generateResume()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition">
+            Generate Resume
+        </button>
+    </div>
+
+    <script>
+        function generateResume() {
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                skills: document.getElementById('skills').value,
+                experience: document.getElementById('experience').value,
+                jobTitle: document.getElementById('jobTitle').value
+            };
+            
+            fetch("http://localhost:5000/generate_resume", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <a href="ai.html" class="fixed top-5 left-5 flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+    </a>
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold text-center text-[50px] bg-black bg-opacity-70 w-max mx-auto p-6 rounded-lg text-blue-400">Aptitude Test</h1>
+        <form id="quiz-form" class="w-[600px] mx-auto p-6">
+            <div id="questions-container"></div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">Submit</button>
+        </form>
+        <div id="result" class="hidden mt-6 bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <h2 class="text-xl font-semibold text-blue-400">Your Score:</h2>
+            <p id="score" class="text-lg font-bold"></p>
+        </div>
+    </div>
+    
+<script>
+        const questions = [
+            {
+                question: "What is the value of 5x + 3 when x = 2?",
+                options: ["10", "13", "16", "19"],
+                answer: "13"
+            },
+            {
+                question: "Simplify: (a^2)^3",
+                options: ["a^5", "a^6", "a^8", "a^9"],
+                answer: "a^6"
+            },
+            {
+                question: "What is the formula for the area of a circle?",
+                options: ["πr", "2πr", "πr^2", "πd"],
+                answer: "πr^2"
+            },
+            {
+                question: "Which gas is essential for photosynthesis?",
+                options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+                answer: "Carbon Dioxide"
+            },
+            {
+                question: "What is the chemical symbol for sodium?",
+                options: ["Na", "So", "Sd", "Si"],
+                answer: "Na"
+            },
+            {
+                question: "Who wrote the play 'Romeo and Juliet'?",
+                options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+                answer: "William Shakespeare"
+            },
+            {
+                question:"What is the square root of 144?",
+                options: ["10","12","14","16"],
+                answer: "12"
+            },
+            {
+                question:"What is the value of sin(90°)?",
+                options: ["0","1","0.5","√3/2"],
+                answer: "1"
+            },
+            {
+                question:"What is the full form of DNA?",
+                options: ["Deoxyribonucleic Acid","Dynamic Nucleic Acid","Derived Nuclear Atom","Digital Numerical Array"],
+                answer: "Deoxyribonucleic Acid"
+            },
+            {
+                question:"What is the capital of India?",
+                options: ["Mumbai","Delhi","Kolkata","Chennai"],
+                answer: "Delhi"
+            },
+            {
+                question:"What is the value of 10% of 200?",
+                options: ["10","20","30","40"],
+                answer: "20"
+            },
+            {
+                question:"What is the product of 12 and 8?",
+                options: ["86","96","106","116"],
+                answer: "96"
+            },
+            {
+                question:"What is the process of water changing to vapor called?",
+                options: ["Condensation","Evaporation","Sublimation","Freezing"],
+                answer: "Evaporation"
+            },
+            {
+                question:"Which planet is known as the 'Red Planet'?",
+                options: ["Venus","Mars","Jupiter","Saturn"],
+                answer: "Mars"
+            },
+            {
+                question:"What is the largest organ in the human body?",
+                options: ["Heart","Liver","Skin","Brain"],
+                answer: "Skin"
+            },
+            {
+                question:"Who discovered penicillin?",
+                options: ["Marie Curie","Alexander Fleming","Albert Einstein","Isaac Newton"],
+                answer: "Alexander Fleming"
+            },
+            {
+                question:"What is the past tense of 'go'?",
+                options: ["Gone","Went","Going","Goes"],
+                answer: "Went"
+            },
+            {
+                question:"What is the synonym of 'happy'?",
+                options: ["Sad","Angry","Joyful","Tired"],
+                answer: "Joyful"
+            },
+            {
+                question:"What is the opposite of 'light'?",
+                options: ["Dark","Heavy","Bright","Soft"],
+                answer: "Dark"
+            },
+            {
+                question:"What is the next prime number after 17?",
+                options: ["18","19","20","21"],
+                answer: "19"
+            },
+            {
+                question:"What is the value of x in 2x + 5 = 11?",
+                options: ["2","3","4","5"],
+                answer: "3"
+            },
+            {
+                question:"What is the chemical formula for water?",
+                options: ["CO2","NaCl","H2O","O2"],
+                answer: "H2O"
+            },
+            {
+                question:"What is the name of the largest ocean?",
+                options: ["Atlantic Ocean","Indian Ocean","Arctic Ocean","Pacific Ocean"],
+                answer: "Pacific Ocean"
+            },
+            {
+                question:"Who was the first President of India?",
+                options: ["Mahatma Gandhi","Jawaharlal Nehru","Rajendra Prasad","Sardar Patel"],
+                answer: "Rajendra Prasad"
+            },
+            {
+                question:"What is the SI unit of force?",
+                options: ["Watt","Joule","Newton","Pascal"],
+                answer: "Newton"
+            }
+        ];
+
+        const questionsContainer = document.getElementById('questions-container');
+        const resultsDiv = document.getElementById('results');
+        const scoreDisplay = document.getElementById('score');
+        const form = document.getElementById('placement-test-form');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'm-4 bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-lg w-full mx-auto border border-blue-500';
+            questionDiv.innerHTML = `
+                <p class="font-semibold text-xl">${index + 1}. ${q.question}</p>
+                ${q.options.map((option, optionIndex) => `
+                    <label class="block text-[#bbb] text-lg">
+                       <input type="radio" name="q${index}" value="${option}" 
+                            class="m-2 w-5 h-5 hover:ring-2 hover:underline hover:ring-blue-400 hover:outline-none" 
+                            style="accent-color: #0f0;">
+
+                        ${option}
+                    </label>
+                `).join('')}
+            `;
+            questionsContainer.appendChild(questionDiv);
+            // questionsContainer.appendChild(document.createElement('hr'))
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selectedOption && selectedOption.value === q.answer) {
+                    score++;
+                }
+            });
+
+            scoreDisplay.textContent = `You scored ${score} out of ${questions.length}.`;
+            resultsDiv.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

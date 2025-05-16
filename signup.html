@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - AI Career Compass</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Create an Account</h1>
+    <p>Join us to get personalized AI career guidance!</p>
+  </header>
+
+  <main>
+    <section id="signup">
+      <form id="signupForm" onsubmit="handleSignUp(event)">
+        <div class="question">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+        <div class="question">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="question">
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        <div class="question">
+          <label for="confirm-password">Confirm Password:</label>
+          <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>
+        Already have an account? <a href="login.html">Log in here</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 AI Career Compass</p>
+  </footer>
+
+  <!-- Link to your JavaScript file or include the script here -->
+  <script>
+    // Handle the Sign-Up form submission
+    function handleSignUp(event) {
+        event.preventDefault(); // Prevent page reload
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Basic validation
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        // Simulate successful sign-up (you can integrate with back-end later)
+        console.log('User signed up:', username, email);
+        alert('Sign-Up successful! Please log in.');
+        window.location.href = 'login.html'; // Redirect to login page after successful sign-up
+    }
+  </script>
+
+  <script src="script.js"></script> <!-- Your external JavaScript file, if needed -->
+</body>
+</html>

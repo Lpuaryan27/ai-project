@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Patent Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #3e478d;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <a href="ai.html" class="fixed top-5 left-5 flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+    </a>
+    <div class="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold text-center text-[50px] bg-black bg-opacity-70 w-max mx-auto p-6 rounded-lg text-blue-400">Research & Patent Checker</h1>
+        <textarea id="inputText" class="w-full p-2 border rounded mb-4" placeholder="Enter your research idea or text snippet..."></textarea>
+        <div class="flex space-x-4 mb-4</a>">
+            <button id="checkResearch" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check Research Papers</button>
+            <button id="checkPatent" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Check Patents</button>
+        </div>
+        <div id="researchResults" class="mb-4">
+            <h2 class="text-lg font-semibold mb-2">Research Paper Results:</h2>
+            <div id="researchOutput" class="border p-2 rounded"></div>
+        </div>
+        <div id="patentResults">
+            <h2 class="text-lg font-semibold mb-2">Patent Results:</h2>
+            <div id="patentOutput" class="border p-2 rounded"></div>
+        </div>
+    </div>
+    <script src="script3.js"></script>
+</body>
+</html>

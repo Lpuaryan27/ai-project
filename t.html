@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mock Interview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col">
+
+    <div class="bg-white shadow p-4">
+        <h1 class="text-2xl font-semibold text-center">AI Mock Interview</h1>
+    </div>
+
+    <div id="interview-container" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div id="question-area" class="bg-gray-200 p-4 rounded-lg">
+            <p id="question-text" class="text-lg">Welcome to your mock interview. Click "Start" to begin.</p>
+        </div>
+        <div id="response-area">
+            <textarea id="user-response" class="w-full border rounded p-2" placeholder="Your answer..."></textarea>
+            <div class="flex justify-end mt-2">
+                <button id="submit-response" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none">Submit</button>
+                <button id="start-interview" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none ml-2">Start</button>
+            </div>
+        </div>
+        <div id="feedback-area" class="bg-yellow-100 p-4 rounded-lg hidden">
+            <p id="feedback-text" class="text-sm"></p>
+        </div>
+    </div>
+
+    <script src="at.js"></script>
+</body>
+</html>

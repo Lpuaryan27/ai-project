@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .btn { transition: all 0.3s ease-in-out; }
+        .btn:hover { transform: scale(1.05); }
+        #photo-container { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-10">
+    <div class="max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg text-center">
+        <h1 class="text-3xl font-bold mb-6">Camera Verification</h1>
+        <div class="relative border border-gray-300 rounded-lg overflow-hidden">
+            <video id="video" class="w-full h-auto"></video>
+        </div>
+        <div class="flex justify-center gap-4 mt-4">
+            <button onclick="startCamera()" class="btn bg-green-500 text-white py-2 px-4 rounded shadow-md hover:bg-green-600">Start Camera</button>
+            <button onclick="captureImage()" class="btn bg-blue-500 text-white py-2 px-4 rounded shadow-md hover:bg-blue-600">Capture Image</button>
+        </div>
+        <input type="file" accept="image/*" id="cameraInput" class="mt-4 w-full border border-gray-300 p-2 rounded shadow-md">
+        <div id="photo-container" class="mt-6 hidden">
+            <h2 class="text-lg font-semibold mb-2">Captured Image:</h2>
+            <img id="photo" class="mt-2 w-full border border-gray-300 rounded-lg shadow-md">
+        </div>
+        <canvas id="canvas" class="hidden"></canvas>
+    </div>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const photo = document.getElementById('photo');
+        const photoContainer = document.getElementById('photo-container');
+        const cameraInput = document.getElementById('cameraInput');
+
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => console.error("Error accessing camera: ", err));
+        }
+
+        function captureImage() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            photo.src = canvas.toDataURL('image/png');
+            photoContainer.classList.remove('hidden');
+        }
+
+        cameraInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    photo.src = e.target.result;
+                    photoContainer.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

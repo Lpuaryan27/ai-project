@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 h-screen flex items-center justify-center">
+    <a href="ai.html" class="fixed top-5 left-5 flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-600 transition transform hover:scale-105">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Back
+    </a>
+    
+    <div class="bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md border border-blue-500">
+        <h2 class="text-2xl font-semibold mb-6 text-blue-400 text-center">Submit Your Resume</h2>
+
+        <form action="/submit-resume" method="post" enctype="multipart/form-data">
+
+            <div class="mb-4">
+                <label for="name" class="block text-blue-300 text-sm font-bold mb-2">Your Name</label>
+                <input type="text" id="name" name="name" class="shadow appearance-none border border-blue-500 rounded w-full py-2 px-3 bg-gray-700 text-blue-200 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-blue-300 text-sm font-bold mb-2">Email Address</label>
+                <input type="email" id="email" name="email" class="shadow appearance-none border border-blue-500 rounded w-full py-2 px-3 bg-gray-700 text-blue-200 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your email">
+            </div>
+
+            <div class="mb-6">
+                <label for="resume" class="block text-blue-300 text-sm font-bold mb-2">Upload Resume (PDF)</label>
+                <div class="relative w-full h-[200px]">
+                    <input type="file" id="resume" onchange="displayFileName(this)" name="resume" accept=".pdf" 
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    <label id="fileLabel"for="resume" 
+                        class="block border-2 border-blue-500 text-white font-semibold py-2 px-4 rounded-xl cursor-pointer text-center 
+                        shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 h-full flex justify-center items-center">
+                        Upload Resume (PDF)
+                    </label>
+                </div>
+                
+            </div>
+
+            <div class="flex items-center justify-center">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    Submit
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+<script>
+    function displayFileName(input) {
+        const label = document.getElementById('fileLabel');
+        if (input.files.length > 0) {
+            label.textContent = input.files[0].name; // Show the uploaded file name
+        } else {
+            label.textContent = "Upload Resume (PDF)"; // Reset text if no file is selected
+        }
+    }
+</script>
+</body>
+</html>

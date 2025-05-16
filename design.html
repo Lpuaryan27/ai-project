@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Assessment - AI Career Compass</title>
+  <style>
+    /* Basic Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question label {
+      font-size: 16px;
+    }
+
+    .question input[type="radio"],
+    .question input[type="range"],
+    .question input[type="text"] {
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #ffeb3b; /* Bright yellow background */
+      color: #fff; /* White text */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    .progress-bar div {
+      height: 20px;
+      border-radius: 20px;
+    }
+
+    .career-links a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    /* Additional styles for flashing effect */
+    .flashing {
+      animation: flash 2s infinite;
+    }
+
+    @keyframes flash {
+      0% { background-color: #ffeb3b; }
+      50% { background-color: #ff9800; }
+      100% { background-color: #ffeb3b; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Career Assessment</h1>
+    <p>Answer these questions to help us recommend the best career for you!</p>
+  </header>
+
+  <main>
+    <section id="assessment">
+      <form id="assessmentForm">
+        <!-- Questions go here, as before -->
+        <!-- Question 1: Multiple Choice (Industry Focus) -->
+        <div class="question">
+          <label for="industry">Which industry interests you the most?</label><br>
+          <input type="radio" id="industry-tech" name="industry" value="Tech"> Technology<br>
+          <input type="radio" id="industry-healthcare" name="industry" value="Healthcare"> Healthcare<br>
+          <input type="radio" id="industry-finance" name="industry" value="Finance"> Finance<br>
+          <input type="radio" id="industry-education" name="industry" value="Education"> Education<br>
+          <input type="radio" id="industry-arts" name="industry" value="Arts"> Arts<br>
+        </div>
+        <!-- (Other questions remain the same) -->
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn">Submit Assessment</button>
+      </form>
+    </section>
+
+    <section id="result">
+      <h2>Your Career Recommendation</h2>
+      <p id="career-recommendation"></p>
+      <p id="career-explanation"></p>
+      
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div id="progress" style="width: 0%; background-color: #4CAF50;"></div>
+      </div>
+      <p id="progress-text">0%</p>
+
+      <!-- Career Path Links -->
+      <h3>Explore More</h3>
+      <div id="career-links" class="career-links"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 AI Career Compass</p>
+  </footer>
+
+  <script>
+    document.getElementById('assessmentForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Collect responses
+      const formData = new FormData(event.target);
+      let score = 0;
+
+      // Example scoring system based on responses (you can customize this)
+      formData.forEach((value, key) => {
+        if (key === 'creativity' || key === 'leadership' || key === 'adaptability' || key === 'problem-solving') {
+          score += parseInt(value); // Add the numerical scores
+        } else if (key === 'industry' || key === 'travel' || key === 'goal') {
+          score += 5; // Add a base score for each category
+        }
+      });
+
+      // Determine the career suggestion based on score
+      let careerRecommendation = '';
+      let careerExplanation = '';
+      let progress = 0;
+      let careerLinks = '';
+
+      if (score <= 60) {
+        careerRecommendation = 'Consider exploring roles in research, design, or any creative field.';
+        careerExplanation = 'These fields require strong creativity, problem-solving skills, and a passion for innovation.';
+        progress = 30;
+        careerLinks = '<a href="https://www.careerexplorer.com/careers/graphic-designer/">Graphic Design Career Path</a><br><a href="https://www.careerexplorer.com/careers/research-scientist/">Research Scientist Career Path</a>';
+      } else if (score <= 100) {
+        careerRecommendation = 'You might thrive in a managerial or technical role with opportunities for growth.';
+        careerExplanation = 'A managerial or technical role will allow you to utilize your problem-solving and leadership abilities.';
+        progress = 60;
+        careerLinks = '<a href="https://www.careerexplorer.com/careers/project-manager/">Project Manager Career Path</a><br><a href="https://www.careerexplorer.com/careers/software-engineer/">Software Engineer Career Path</a>';
+      } else {
+        careerRecommendation = 'You are ready for leadership roles in technology or business management.';
+        careerExplanation = 'Your strengths in leadership, adaptability, and risk-taking suggest that you could excel in high-level managerial roles.';
+        progress = 100;
+        careerLinks = '<a href="https://www.careerexplorer.com/careers/chief-executive-officer/">CEO Career Path</a><br><a href="https://www.careerexplorer.com/careers/entrepreneur/">Entrepreneur Career Path</a>';
+      }
+
+      // Play the sound
+      const audio = new Audio('assets/success-sound.mp3');
+      audio.play();
+
+      // Show result with bright color and flashing effect
+      document.getElementById('assessment').style.display = 'none';
+      const resultSection = document.getElementById('result');
+      resultSection.style.display = 'block';
+      resultSection.classList.add('flashing');  // Apply flashing effect
+
+      document.getElementById('career-recommendation').textContent = careerRecommendation;
+      document.getElementById('career-explanation').textContent = careerExplanation;
+
+      // Update progress bar and percentage
+      document.getElementById('progress').style.width = progress + '%';
+      document.getElementById('progress-text').textContent = progress + '%';
+
+      // Display career path links
+      document.getElementById('career-links').innerHTML = careerLinks;
+    });
+  </script>
+
+</body>
+</html>

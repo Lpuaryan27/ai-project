@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Guidance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e1e1e, #333);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 3px solid #4a90e2;
+        }
+        .nav-buttons a {
+            background-color: #4a90e2;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+        .nav-buttons a:hover {
+            background-color: #357abd;
+            transform: scale(1.05);
+        }
+        .bg-white {
+            background-color: #1e1e1e !important;
+            color: #e0e0e0;
+            border-left: 4px solid #4a90e2;
+        }
+        input, textarea {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #4a90e2;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #888;
+        }
+        button {
+            background-color: #4a90e2;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #357abd;
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #1e1e1e;
+            border-top: 3px solid #4a90e2;
+        }
+
+                @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-10%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: translateY(0);
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+
+        .bounce {
+            animation: bounce 1s infinite;
+        }       
+
+    </style>
+</head>
+<body>
+
+    <header class="hero flex flex-col">
+        <div class="flex flex-row mx-auto justify-center items-center">
+            <h1 class="text-[60px] font-bold bg-gradient-to-r from-[#1e40af] to-[#ec4899] bg-clip-text text-transparent">
+                AI Career Guidance
+            </h1>
+            
+            
+            <img src="bot.webp" class="w-32 h-32 bounce"/>
+        </div>
+        <nav class="nav-buttons mt-4 flex justify-center space-x-4">
+            <a href="r1.html">Submit Resume</a>
+            <a href="exam.html" >Entrance Test</a>
+            <a href="web1.html">Webinars</a>
+            <a href="share2.html">SHARE</a>
+            <a href="res.html">ResearchPatentScan</a>
+        </nav>
+    </header>
+    
+    <main class="container mx-auto p-4">
+
+        <section id="user-profile" class="p-6 rounded-lg shadow mb-4 bg-black bg-opacity-70">
+            <h2 class="text-xl font-semibold mb-4">Your Profile</h2>
+            <form id="profile-form">
+                <div class="mb-4">
+                    <label for="skills" class="block text-sm font-medium">Skills</label>
+                    <textarea id="skills" class="mt-1 p-2 border rounded w-full" placeholder="e.g., Python, JavaScript, Project Management"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="interests" class="block text-sm font-medium">Interests</label>
+                    <input type="text" id="interests" class="mt-1 p-2 border rounded w-full" placeholder="e.g., Technology, Design, Finance">
+                </div>
+                <div class="mb-4">
+                    <label for="education" class="block text-sm font-medium">Education</label>
+                    <input type="text" id="education" class="mt-1 p-2 border rounded w-full" placeholder="e.g., Bachelor's in Computer Science">
+                </div>
+                <button type="submit" class="text-white font-bold py-2 px-4 rounded">Get Recommendations</button>
+            </form>
+        </section>
+        
+        <iframe src="mentor.html" class="w-full h-96 border"></iframe>
+
+        <div class="min-h-screen flex flex-col items-center justify-center text-white p-6">
+            <section id="recommendations" class="p-6 rounded-lg shadow-lg mb-6 bg-gray-800 w-full max-w-4xl">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Career Recommendations</h2>
+                <div id="recommendation-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">Software Engineer</h3>
+                        <p class="text-gray-300">Explore full-stack development and problem-solving skills.</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">Cybersecurity Analyst</h3>
+                        <p class="text-gray-300">Learn about ethical hacking and network security.</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section id="skill-gap" class="p-6 rounded-lg shadow-lg mb-6 bg-gray-800 w-full max-w-4xl">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Skill Gap Analysis</h2>
+                <div id="skill-gap-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">Data Structures & Algorithms</h3>
+                        <p class="text-gray-300">Improve problem-solving skills with coding challenges.</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">Cloud Computing</h3>
+                        <p class="text-gray-300">Gain experience with AWS, Azure, and Google Cloud.</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section id="learning-resources" class="p-6 rounded-lg shadow-lg bg-gray-800 w-full max-w-4xl">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Learning Resources</h2>
+                <div id="resource-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">CS50 by Harvard</h3>
+                        <p class="text-gray-300">A great introduction to computer science fundamentals.</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-lg font-semibold">LeetCode</h3>
+                        <p class="text-gray-300">Practice coding problems to prepare for technical interviews.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+
+    </main>
+
+    <script src="ai1.js"></script>
+    <footer class="text-center p-4">
+        <p>&copy; 2025 Your Company. All Rights Reserved.</p>
+    </footer>
+    
+</body>
+</html>

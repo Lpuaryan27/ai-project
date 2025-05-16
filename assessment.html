@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Assessment - AI Career Compass</title>
+  <style>
+    /* Basic Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question label {
+      font-size: 16px;
+    }
+
+    .question input[type="radio"],
+    .question input[type="range"],
+    .question input[type="text"] {
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    .progress-bar div {
+      height: 20px;
+      border-radius: 20px;
+    }
+
+    .career-links a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Career Assessment</h1>
+    <p>Answer these questions to help us recommend the best career for you!</p>
+  </header>
+
+  <main>
+    <section id="assessment">
+      <form id="assessmentForm">
+        <!-- Question 1: Multiple Choice (Industry Focus) -->
+        <div class="question">
+          <label for="industry">Which industry interests you the most?</label><br>
+          <input type="radio" id="industry-tech" name="industry" value="Tech"> Technology<br>
+          <input type="radio" id="industry-healthcare" name="industry" value="Healthcare"> Healthcare<br>
+          <input type="radio" id="industry-finance" name="industry" value="Finance"> Finance<br>
+          <input type="radio" id="industry-education" name="industry" value="Education"> Education<br>
+          <input type="radio" id="industry-arts" name="industry" value="Arts"> Arts<br>
+        </div>
+
+        <!-- Question 2: Slider (1-10) -->
+        <div class="question">
+          <label for="creativity">Rate your level of creativity (1-10):</label><br>
+          <input type="range" id="creativity" name="creativity" min="1" max="10" value="5">
+          <span id="creativity-value">5</span>
+        </div>
+
+        <!-- Question 3: Yes/No -->
+        <div class="question">
+          <label for="travel">Would you like a job that involves frequent travel?</label><br>
+          <input type="radio" id="travel-yes" name="travel" value="Yes" required> Yes
+          <input type="radio" id="travel-no" name="travel" value="No"> No
+        </div>
+
+        <!-- Question 4: One-word Response -->
+        <div class="question">
+          <label for="goal">What is your ultimate career goal?</label>
+          <input type="text" id="goal" name="goal" placeholder="Enter one word (e.g., leadership, innovation)" required>
+        </div>
+
+        <!-- Question 5: Yes/No -->
+        <div class="question">
+          <label for="routine">Do you prefer routine tasks over new challenges?</label><br>
+          <input type="radio" id="routine-yes" name="routine" value="Yes" required> Yes
+          <input type="radio" id="routine-no" name="routine" value="No"> No
+        </div>
+
+        <!-- Question 6: Multiple Choice -->
+        <div class="question">
+          <label for="work-environment">What kind of work environment do you prefer?</label><br>
+          <input type="radio" id="work-environment-office" name="work-environment" value="Office"> Office<br>
+          <input type="radio" id="work-environment-remote" name="work-environment" value="Remote"> Remote<br>
+          <input type="radio" id="work-environment-flexible" name="work-environment" value="Flexible"> Flexible<br>
+        </div>
+
+        <!-- Question 7: Multiple Choice -->
+        <div class="question">
+          <label for="teamwork">Do you prefer working in a team or independently?</label><br>
+          <input type="radio" id="teamwork-team" name="teamwork" value="Team"> Team<br>
+          <input type="radio" id="teamwork-independently" name="teamwork" value="Independently"> Independently<br>
+        </div>
+
+        <!-- Question 8: Slider (1-10) -->
+        <div class="question">
+          <label for="leadership">Rate your leadership skills (1-10):</label><br>
+          <input type="range" id="leadership" name="leadership" min="1" max="10" value="5">
+          <span id="leadership-value">5</span>
+        </div>
+
+        <!-- Question 9: Multiple Choice -->
+        <div class="question">
+          <label for="job-involvement">How much involvement do you want in decision-making?</label><br>
+          <input type="radio" id="job-involvement-high" name="job-involvement" value="High"> High<br>
+          <input type="radio" id="job-involvement-low" name="job-involvement" value="Low"> Low<br>
+        </div>
+
+        <!-- Question 10: Multiple Choice -->
+        <div class="question">
+          <label for="job-stability">How important is job stability for you?</label><br>
+          <input type="radio" id="job-stability-high" name="job-stability" value="High"> High<br>
+          <input type="radio" id="job-stability-low" name="job-stability" value="Low"> Low<br>
+        </div>
+
+        <!-- Question 11: Yes/No -->
+        <div class="question">
+          <label for="high-pressure">Can you handle high-pressure situations?</label><br>
+          <input type="radio" id="high-pressure-yes" name="high-pressure" value="Yes" required> Yes
+          <input type="radio" id="high-pressure-no" name="high-pressure" value="No"> No
+        </div>
+
+        <!-- Question 12: Slider (1-10) -->
+        <div class="question">
+          <label for="adaptability">Rate your adaptability to change (1-10):</label><br>
+          <input type="range" id="adaptability" name="adaptability" min="1" max="10" value="5">
+          <span id="adaptability-value">5</span>
+        </div>
+
+        <!-- Question 13: Yes/No -->
+        <div class="question">
+          <label for="technical-skills">Do you have strong technical skills?</label><br>
+          <input type="radio" id="technical-skills-yes" name="technical-skills" value="Yes" required> Yes
+          <input type="radio" id="technical-skills-no" name="technical-skills" value="No"> No
+        </div>
+
+        <!-- Question 14: Multiple Choice -->
+        <div class="question">
+          <label for="work-life-balance">How important is work-life balance to you?</label><br>
+          <input type="radio" id="work-life-balance-high" name="work-life-balance" value="High"> High<br>
+          <input type="radio" id="work-life-balance-low" name="work-life-balance" value="Low"> Low<br>
+        </div>
+
+        <!-- Question 15: Yes/No -->
+        <div class="question">
+          <label for="entrepreneurship">Are you interested in starting your own business?</label><br>
+          <input type="radio" id="entrepreneurship-yes" name="entrepreneurship" value="Yes" required> Yes
+          <input type="radio" id="entrepreneurship-no" name="entrepreneurship" value="No"> No
+        </div>
+
+        <!-- Question 16: Multiple Choice -->
+        <div class="question">
+          <label for="job-location">Where would you prefer to work?</label><br>
+          <input type="radio" id="job-location-city" name="job-location" value="City"> City<br>
+          <input type="radio" id="job-location-country" name="job-location" value="Country"> Country<br>
+          <input type="radio" id="job-location-abroad" name="job-location" value="Abroad"> Abroad<br>
+        </div>
+
+        <!-- Question 17: Multiple Choice -->
+        <div class="question">
+          <label for="project-type">What type of projects do you enjoy?</label><br>
+          <input type="radio" id="project-type-creative" name="project-type" value="Creative"> Creative<br>
+          <input type="radio" id="project-type-technical" name="project-type" value="Technical"> Technical<br>
+          <input type="radio" id="project-type-analytical" name="project-type" value="Analytical"> Analytical<br>
+        </div>
+
+        <!-- Question 18: Yes/No -->
+        <div class="question">
+          <label for="public-speaking">Do you enjoy public speaking?</label><br>
+          <input type="radio" id="public-speaking-yes" name="public-speaking" value="Yes" required> Yes
+          <input type="radio" id="public-speaking-no" name="public-speaking" value="No"> No
+        </div>
+
+        <!-- Question 19: Multiple Choice -->
+        <div class="question">
+          <label for="learning-preference">How do you prefer to learn?</label><br>
+          <input type="radio" id="learning-preference-books" name="learning-preference" value="Books"> Books<br>
+          <input type="radio" id="learning-preference-video" name="learning-preference" value="Video"> Video<br>
+          <input type="radio" id="learning-preference-online" name="learning-preference" value="Online"> Online<br>
+        </div>
+
+        <!-- Question 20: Slider (1-10) -->
+        <div class="question">
+          <label for="problem-solving">Rate your problem-solving ability (1-10):</label><br>
+          <input type="range" id="problem-solving" name="problem-solving" min="1" max="10" value="5">
+          <span id="problem-solving-value">5</span>
+        </div>
+
+        <!-- Question 21: Multiple Choice -->
+        <div class="question">
+          <label for="risk-taking">How comfortable are you with taking risks?</label><br>
+          <input type="radio" id="risk-taking-high" name="risk-taking" value="High"> High<br>
+          <input type="radio" id="risk-taking-low" name="risk-taking" value="Low"> Low<br>
+        </div>
+
+        <!-- Question 22: Yes/No -->
+        <div class="question">
+          <label for="data-analytics">Do you have an interest in data analytics?</label><br>
+          <input type="radio" id="data-analytics-yes" name="data-analytics" value="Yes" required> Yes
+          <input type="radio" id="data-analytics-no" name="data-analytics" value="No"> No
+        </div>
+
+        <!-- Question 23: Multiple Choice -->
+        <div class="question">
+          <label for="career-growth">How important is career growth for you?</label><br>
+          <input type="radio" id="career-growth-high" name="career-growth" value="High"> High<br>
+          <input type="radio" id="career-growth-low" name="career-growth" value="Low"> Low<br>
+        </div>
+
+        <!-- Question 24: Yes/No -->
+        <div class="question">
+          <label for="financial-reward">Is financial reward a top priority for you?</label><br>
+          <input type="radio" id="financial-reward-yes" name="financial-reward" value="Yes" required> Yes
+          <input type="radio" id="financial-reward-no" name="financial-reward" value="No"> No
+        </div>
+
+        <!-- Question 25: Multiple Choice -->
+        <div class="question">
+          <label for="work-satisfaction">What do you value most in a job?</label><br>
+          <input type="radio" id="work-satisfaction-meaning" name="work-satisfaction" value="Meaningful Work"> Meaningful Work<br>
+          <input type="radio" id="work-satisfaction-money" name="work-satisfaction" value="Money"> Money<br>
+          <input type="radio" id="work-satisfaction-growth" name="work-satisfaction" value="Growth"> Growth<br>
+        </div>
+        <!-- Question 26: Slider (1-10) -->
+<div class="question">
+  <label for="critical-thinking">Rate your critical thinking skills (1-10):</label><br>
+  <input type="range" id="critical-thinking" name="critical-thinking" min="1" max="10" value="5">
+  <span id="critical-thinking-value">5</span>
+</div>
+
+<!-- Question 27: Yes/No -->
+<div class="question">
+  <label for="leadership-ambition">Are you interested in taking up leadership roles?</label><br>
+  <input type="radio" id="leadership-ambition-yes" name="leadership-ambition" value="Yes" required> Yes
+  <input type="radio" id="leadership-ambition-no" name="leadership-ambition" value="No"> No
+</div>
+
+<!-- Question 28: Multiple Choice -->
+<div class="question">
+  <label for="preferred-industry">Which industry excites you the most?</label><br>
+  <input type="radio" id="preferred-industry-ai" name="preferred-industry" value="AI"> Artificial Intelligence<br>
+  <input type="radio" id="preferred-industry-environment" name="preferred-industry" value="Environment"> Environmental Sciences<br>
+  <input type="radio" id="preferred-industry-marketing" name="preferred-industry" value="Marketing"> Marketing and Advertising<br>
+</div>
+
+<!-- Question 29: One-word Response -->
+<div class="question">
+  <label for="career-aspiration">What is one skill you wish to master in your career?</label>
+  <input type="text" id="career-aspiration" name="career-aspiration" placeholder="Enter a skill (e.g., coding, networking)" required>
+</div>
+
+<!-- Question 30: Yes/No -->
+<div class="question">
+  <label for="work-under-pressure">Can you perform well under tight deadlines?</label><br>
+  <input type="radio" id="work-under-pressure-yes" name="work-under-pressure" value="Yes" required> Yes
+  <input type="radio" id="work-under-pressure-no" name="work-under-pressure" value="No"> No
+</div>
+<!-- Question 31: Checkbox (Multiple Selections) -->
+<div class="question">
+  <label for="skills">Which of the following skills do you already possess? (Select all that apply):</label><br>
+  <input type="checkbox" id="skill-coding" name="skills" value="Coding"> Coding<br>
+  <input type="checkbox" id="skill-teamwork" name="skills" value="Teamwork"> Teamwork<br>
+  <input type="checkbox" id="skill-problem-solving" name="skills" value="Problem Solving"> Problem Solving<br>
+  <input type="checkbox" id="skill-communication" name="skills" value="Communication"> Communication<br>
+  <input type="checkbox" id="skill-time-management" name="skills" value="Time Management"> Time Management<br>
+</div>
+
+<!-- Question 32: Slider (1-10) -->
+<div class="question">
+  <label for="tech-savviness">Rate your comfort level with using technology (1-10):</label><br>
+  <input type="range" id="tech-savviness" name="tech-savviness" min="1" max="10" value="5">
+  <span id="tech-savviness-value">5</span>
+</div>
+
+<!-- Question 33: Dropdown -->
+<div class="question">
+  <label for="preferred-work-environment">What is your preferred work environment?</label><br>
+  <select id="preferred-work-environment" name="preferred-work-environment" required>
+    <option value="Office">Office</option>
+    <option value="Remote">Remote</option>
+    <option value="Hybrid">Hybrid (Office + Remote)</option>
+  </select>
+</div>
+<!-- Submit Button -->
+<button type="submit">Submit Assessment</button>
+</form>
+</section>
+</main>
+
+<script>
+document.getElementById('assessmentForm').addEventListener('submit', function(event) {
+event.preventDefault();
+
+// Calculate the score
+const formData = new FormData(event.target);
+let score = 0;
+const weights = {
+  creativity: 1.5,
+  leadership: 2,
+  "problem-solving": 2,
+  adaptability: 1.2,
+  "stress-handling": 1,
+  "continuous-learning": 2,
+};
+
+formData.forEach((value, key) => {
+  if (key === "stress-handling") {
+    score += parseInt(value) * weights[key];
+  } else if (key === "continuous-learning") {
+    score += value === "Yes" ? weights[key] : 0;
+  } else {
+    score += parseInt(value) * weights[key];
+  }
+});
+
+// Save score in localStorage for access in the result page
+localStorage.setItem('assessmentScore', score);
+
+// Redirect to result page
+window.location.href = 'result.html';
+});
+</script>
+</body>
+</html>

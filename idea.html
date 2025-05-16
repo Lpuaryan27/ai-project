@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Guidance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+   
+` <h1 class="text-white text-3xl font-bold p-10">Welcome to My Page</h1>
+    </div>
+    
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4 text-center">AI Career Guidance</h2>
+        <form id="careerForm" class="space-y-4">
+         
+            <div>
+
+                <label class="block text-gray-700">Your Skills:</label>
+                <input type="text" id="skills" class="w-full p-2 border rounded-lg" placeholder="e.g., Python, Data Analysis">
+                <a href="resume.html" class="text-blue-500 underline" >VIEW RESUME </a>
+            </div>
+            <div>
+                <label class="block text-gray-700">Your Interests:</label>
+                <input type="text" id="interests" class="w-full p-2 border rounded-lg" placeholder="e.g., AI, Web Development">
+            </div>
+            <div>
+                <label class="block text-gray-700">Education Level:</label>
+                <select id="education" class="w-full p-2 border rounded-lg">
+                    <option value="bachelor">Bachelor's</option>
+                    <option value="master">Master's</option>
+                    <option value="phd">PhD</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Get Career Suggestions</button>
+        </form>
+        <div id="result" class="mt-4 p-2 text-center text-gray-700 font-semibold"></div>
+    </div>
+
+    <script>
+        document.getElementById("careerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let skills = document.getElementById("skills").value;
+            let interests = document.getElementById("interests").value;
+            let education = document.getElementById("education").value;
+            document.getElementById("result").innerText = "Processing career recommendations...";
+            
+            fetch("/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ skills, interests, education })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = "Recommended Career: " + data.career;
+            });
+            <a href="resume.html" class="text-blue-500 underline">View Resume</a>
+
+        });
+
+    </script>
+</body>
+</html>

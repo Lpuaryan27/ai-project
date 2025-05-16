@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <section id="feedback">
+      <h2>We Value Your Feedback</h2>
+      <form id="feedbackForm">
+        <label for="feedbackText">Share your thoughts about the career assessment:</label><br>
+        <textarea id="feedbackText" name="feedbackText" rows="4" placeholder="Enter your feedback here..."></textarea><br>
+
+        <label for="rating">Rate your experience:</label><br>
+        <select id="rating" name="rating">
+          <option value="5">Excellent</option>
+          <option value="4">Good</option>
+          <option value="3">Average</option>
+          <option value="2">Below Average</option>
+          <option value="1">Poor</option>
+        </select><br><br>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <p id="feedbackMessage" style="color: green;"></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 AI Career Compass</p>
+  </footer>
+
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const feedbackText = document.getElementById('feedbackText').value;
+      const rating = document.getElementById('rating').value;
+
+      // Handle feedback submission (e.g., send to backend or store)
+      document.getElementById('feedbackMessage').textContent = 'Thank you for your feedback!';
+
+      // Simulate redirecting to a thank-you page
+      setTimeout(() => {
+        window.location.href = 'thank-you.html'; // Redirect to thank-you page
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('') no-repeat center center fixed; /* Add background image */
+    background-size: cover; /* Ensure the image covers the entire screen */
+    color: #333;
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+    height: 100vh;  /* Full viewport height */
+    text-align: center;
+    flex-direction: column; /* Stack header and content vertically */
+}
+/* Header Styling */
+header {
+    background: linear-gradient(to right, #0b1635, #419149); /* Gradient for 3D effect */
+    color: white;
+    padding: 20px 0;
+    border-radius: 10px 10px 0 0;
+    width: 100%;  /* Full width */
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* 3D shadow effect */
+}
+header h1 {
+    font-size: 3.2em;
+    margin: 0;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Text 3D effect */
+}
+header p {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: #ffffff;
+}
+/* Main Content */
+main {
+    margin: 20px;
+    padding: 30px;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* 3D shadow effect */
+    width: 100%;
+    box-sizing: border-box;
+}
+h2, h3 {
+    color: #71191f;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 3D text effect */
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+button {
+    background: linear-gradient(135deg, #32cd32, #228b22); /* Gradient for depth */
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* 3D button shadow */
+    transform: translateY(0); /* Default position */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+}
+button:hover {
+    background-color: #1e7b1e;
+    transform: translateY(-5px); /* Lift the button */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+button:focus {
+    outline: none;
+}
+/* Footer Styling */
+footer {
+    background-color: #2f664d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3); /* Slight shadow for 3D feel */
+}
+footer p {
+    margin: 0;
+}

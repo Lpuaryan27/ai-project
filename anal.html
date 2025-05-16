@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Trend Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body class="p-4">
+    <h1 class="text-3xl font-bold mb-4">Industry Trend Analyzer</h1>
+    <div id="dataDisplay"></div>
+    <script>
+        const trendData = [
+            { industry: "Tech", trend: "AI Growth", value: 75 },
+            { industry: "Healthcare", trend: "Telemedicine", value: 60 },
+            { industry: "Finance", trend: "Crypto Adoption", value: 40 },
+            { industry: "Retail", trend: "E-commerce", value: 80 },
+            { industry: "Tech", trend: "Cloud Computing", value: 90 },
+            { industry: "Healthcare", trend: "Wearable Tech", value: 50 },
+        ];
+
+        function displayData(data) {
+            const displayDiv = document.getElementById("dataDisplay");
+            displayDiv.innerHTML = ""; // Clear previous data
+
+            const table = document.createElement("table");
+            table.classList.add("table-auto", "w-full", "border-collapse");
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th class="border p-2">Industry</th>
+                        <th class="border p-2">Trend</th>
+                        <th class="border p-2">Value</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
+            const tbody = table.querySelector("tbody");
+
+            data.forEach((item) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td class="border p-2">${item.industry}</td>
+                    <td class="border p-2">${item.trend}</td>
+                    <td class="border p-2">${item.value}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            displayDiv.appendChild(table);
+        }
+
+        displayData(trendData); // Initial display
+    </script>
+</body>
+</html>

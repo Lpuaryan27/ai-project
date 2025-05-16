@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Share Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4">
+    <button id="startShare" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Start Screen Share</button>
+    <video id="screenVideo" class="mt-4 w-full" autoplay></video>
+    <script>
+        const startShareButton = document.getElementById('startShare');
+        const screenVideo = document.getElementById('screenVideo');
+
+        startShareButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+                screenVideo.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing screen:', err);
+            }
+        });
+    </script>
+</body>
+</html>

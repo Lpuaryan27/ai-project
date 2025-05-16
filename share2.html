@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Share Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            background: url('texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+    </style>
+</head>
+<body class="p-4">
+    <button id="startShare" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Start Screen Share</button>
+    <video id="screenVideo" class="mt-4 w-full" autoplay></video>
+    <script>
+        const startShareButton = document.getElementById('startShare');
+        const screenVideo = document.getElementById('screenVideo');
+
+        startShareButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+                screenVideo.srcObject = stream;
+
+                
+                setTimeout(async () => {
+                    const canvas = document.createElement('canvas');
+                    const video = screenVideo;
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                  
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = 'screenshot.png';
+                    link.click();
+                }, 10000); 
+            } catch (err) {
+                console.error('Error accessing screen:', err);
+            }
+        });
+    </script>
+</body>
+</html>
+
+</html>

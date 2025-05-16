@@ -1,0 +1,38 @@
+/* Add your styles here */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; 
+    border-radius: 5px;
+    border: 1px solid #1f1b1b;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(32, 45, 32);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content-box {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(229, 223, 223);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header, footer {
+    background-color: rgb(31, 3, 8);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1, footer p {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
